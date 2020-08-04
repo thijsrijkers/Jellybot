@@ -3,11 +3,11 @@ from imageai.Detection import ObjectDetection
 #[TODO: Personfix: Fix the import of objectdetection to the right version]
 
 #reddit login for API
-reddit = praw.Reddit(   client_id="F7559eYxDl7KPQ",
-                        client_secret="xFmvRbrtfkQAkLiHNJnLAQe3V4g",
-                        password="Jellybot_",
+reddit = praw.Reddit(   client_id="------------------------",
+                        client_secret="------------------------",
+                        password="------------------------",
                         user_agent="Jellybot was created by u/oocryoo",
-                        username="Jellybot_"
+                        username="------------------------"
                     )
 
 print(reddit.user.me())
