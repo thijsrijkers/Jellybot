@@ -1,13 +1,14 @@
 import praw
-from imageai.Detection import ObjectDetection
-#[TODO: Personfix: Fix the import of objectdetection to the right version]
+from PIL import Image
+import requests
+from io import BytesIO
 
 #reddit login for API
-reddit = praw.Reddit(   client_id="------------------------",
-                        client_secret="------------------------",
-                        password="------------------------",
+reddit = praw.Reddit(   client_id="======",
+                        client_secret="="======",",
+                        password="="======",",
                         user_agent="Jellybot was created by u/oocryoo",
-                        username="------------------------"
+                        username="="======","
                     )
 
 print(reddit.user.me())
@@ -23,28 +24,22 @@ for comment in subreddit.stream.comments():
     if keyphrase in comment.body:
         print('Comment found!')
         try:
-                #############################################
-                #[TODO: Fix this code block after the import update is fixed]
-                submission = comment.submission
-                url = submission.url
+            try:
+                url = "https://www.gettyimages.pt/gi-resources/images/Homepage/Hero/PT/PT_hero_42_153645159.jpg"
+                response = requests.get(url)
+                img = Image.open(BytesIO(response.content))
 
-                detector = ObjectDetection()
+                # getting colors
+                imgColor = Image.getcolors(img)
 
-                model_path = url
-                input_path = url
-                output_path = url
+                print(imgColor)
 
-                detector.setModelTypeAsTinyYOLOv3()
-                detector.setModelPath(model_path)
-                detector.loadModel()
-                detection = detector.detectObjectsFromImage(input_image=input_path, output_image_path=output_path)
-
-                for eachItem in detection:
-                    print(eachItem["name"] , " : ", eachItem["percentage_probability"])
-                #############################################
-
-                reply = 'Thnx for using Jellybot! ATM were still working on the repost detection functions.'
+                reply = 'Jellybot found the same post!'
                 comment.reply(reply)
-                print('posted')
+                print('posted, repost found')
+            except:
+                reply = 'Thnx for using Jellybot! ATM Jellybot cant find another post. So this is probally not a repost.'
+                comment.reply(reply)
+                print('posted, no repost found')
         except:
             print('to frequent')
