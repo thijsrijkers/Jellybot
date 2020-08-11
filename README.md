@@ -8,5 +8,6 @@ To build Jellybot you need:
 ## Requirements you need to install for your Environment
 You need to install the following lines:
 <br>
+<br>
 -PIL/Pillow <br>
 $ pip3 install Pillow <br>
